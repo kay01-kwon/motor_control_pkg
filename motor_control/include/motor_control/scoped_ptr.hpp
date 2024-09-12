@@ -27,6 +27,15 @@ class scoped_ptr
         return ptr_;
     }
 
+    T* operator=(T* ptr)
+    {
+        if (ptr_ != ptr)
+        {
+            delete ptr_;
+            ptr_ = ptr;
+        }
+    }
+
     private:
     T* ptr_;
 };

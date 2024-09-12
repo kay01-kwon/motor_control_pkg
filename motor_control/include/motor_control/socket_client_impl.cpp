@@ -21,7 +21,7 @@ int SocketClientImpl::create_socket()
 
     if( socket_fd_ < 0)
     {
-        cout << "Socket creation failed" << endl;
+        // cout << "Socket creation failed" << endl;
         return -1;
     }
     socket_fd_ptr_ = &socket_fd_;
@@ -45,11 +45,11 @@ int SocketClientImpl::socket_connect()
     // Connect to the server
     if(connect(socket_fd_, (struct sockaddr *)&server_addr_, sizeof(server_addr_)) < 0)
     {
-        cout << "Connection failed" << endl;
+        // cout << "Connection failed" << endl;
         return -1;
     }
 
-    cout << "Connected to server" << endl;
+    // cout << "Connected to server" << endl;
 
     return 0;
 }

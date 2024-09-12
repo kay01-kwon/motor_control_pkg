@@ -8,4 +8,46 @@
 
 #include "socket_client_impl.hpp"
 
+#include "scoped_ptr.hpp"
+
+#include "motor_control_msg/actual_value.h"
+#include "motor_control_msg/target_pos_value.h"
+#include "motor_control_msg/target_torque_value.h"
+
+using motor_control_msg::actual_valueConstPtr;
+using motor_control_msg::target_pos_valueConstPtr;
+using motor_control_msg::target_torque_valueConstPtr;
+
+class RosMotorControl
+{
+    public:
+
+    RosMotorControl();
+
+    void callback_pos(const target_pos_valueConstPtr& msg);
+
+    void callback_torque(const target_torque_valueConstPtr& msg);
+
+    void run();
+
+    void publish_actual_data();
+
+
+    private:
+
+    ros::NodeHandle nh_;
+
+    ros::Subscriber sub_;
+    ros::Publisher pub_;
+
+    scoped_ptr<MotorControl> motor_control_;
+
+    SocketClientImpl socket_client_;
+
+    uint8_t send_data[20];
+
+    scoped_ptr<MotorControl> motor_control_;
+
+};
+
 #endif
