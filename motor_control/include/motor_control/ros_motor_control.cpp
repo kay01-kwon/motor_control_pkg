@@ -46,5 +46,18 @@ RosMotorControl::RosMotorControl()
         ros::shutdown();
     }
 
+}
 
+void RosMotorControl::callback_pos(const target_pos_valueConstPtr &msg)
+{
+}
+void RosMotorControl::callback_torque(const target_torque_valueConstPtr &msg)
+{
+}
+void RosMotorControl::run()
+{
+}
+
+void RosMotorControl::publish_actual_data()
+{
 }
