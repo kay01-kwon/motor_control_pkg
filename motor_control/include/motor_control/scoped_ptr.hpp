@@ -34,6 +34,7 @@ class scoped_ptr
             delete ptr_;
             ptr_ = ptr;
         }
+        return ptr_;
     }
 
     private:

@@ -10,17 +10,6 @@ MotorControl::~MotorControl()
 {
 }
 
-int16_t MotorControl::get_actual_torque(const uint8_t* data)
-{
-    actual_torque_ = 0;
-
-    for(size_t i = 0; i < 2; i++)
-    {
-        actual_torque_ = actual_torque_ | (data[i] << (8 * i));
-    }
-    return actual_torque_;
-}
-
 MotorControl *MotorControl::create_motor_control(MotorControlMode mode)
 {
 
@@ -36,6 +25,18 @@ MotorControl *MotorControl::create_motor_control(MotorControlMode mode)
 
     return nullptr;
 }
+
+int16_t MotorControl::get_actual_torque(const uint8_t* data)
+{
+    actual_torque_ = 0;
+
+    for(size_t i = 0; i < 2; i++)
+    {
+        actual_torque_ = actual_torque_ | (data[i] << (8 * i));
+    }
+    return actual_torque_;
+}
+
 
 int32_t MotorControl::get_actual_pos(const uint8_t* data)
 {

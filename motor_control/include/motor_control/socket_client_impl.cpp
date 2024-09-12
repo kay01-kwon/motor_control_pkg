@@ -1,5 +1,4 @@
 #include "socket_client_impl.hpp"
-#include <common_functions.h>
 
 SocketClientImpl::SocketClientImpl()
 {

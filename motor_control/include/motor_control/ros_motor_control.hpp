@@ -45,8 +45,6 @@ class RosMotorControl
     uint8_t* send_data_ptr;
     uint8_t* recv_data_ptr;
 
-    scoped_ptr<MotorControl> motor_control_;
-
 };
 
 #endif

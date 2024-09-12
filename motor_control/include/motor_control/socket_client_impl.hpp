@@ -10,7 +10,7 @@
 #include <netinet/in.h>
 
 #include <string>
-#include <cstring>
+#include <string.h>
 
 using namespace std;
 
