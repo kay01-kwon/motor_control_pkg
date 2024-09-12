@@ -44,9 +44,6 @@ class SocketClientImpl
 
     struct sockaddr_in server_addr_;
 
-    uint8_t send_data[20];
-    uint8_t recv_data[20];
-
     int port_{3000};
 
 };

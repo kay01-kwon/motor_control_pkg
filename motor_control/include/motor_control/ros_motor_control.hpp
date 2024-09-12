@@ -43,7 +43,7 @@ class RosMotorControl
     SocketClientImpl socket_client_;
 
     uint8_t* send_data_ptr;
-    uint8_t* recv_data_ptr;
+    uint8_t recv_data[20];
 
 };
 

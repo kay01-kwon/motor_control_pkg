@@ -8,6 +8,12 @@ RosMotorControl::RosMotorControl()
     nh_.getParam("ip_addr", ip_addr);
     nh_.getParam("port", port);
 
+    cout << mode_string << endl;
+
+    cout << ip_addr << endl;
+
+    cout << port << endl;
+
     MotorControlMode mode_;
 
     if (mode_string == "position")
@@ -24,9 +30,11 @@ RosMotorControl::RosMotorControl()
     }
     else
     {
+        send_data_ptr = nullptr;
         ROS_ERROR("Invalid mode: %s", mode_string.c_str());
         ros::shutdown();
     }
+    send_data_ptr = motor_control_->send_data;
 
     pub_ = nh_.advertise<motor_control_msg::actual_value>("actual_data", 1);
 
@@ -64,13 +72,14 @@ void RosMotorControl::publish_actual_data()
 {
     socket_client_.socket_send(send_data_ptr, 20);
 
-    if(socket_client_.socket_recv(recv_data_ptr, 20) > 0)
+    if(socket_client_.socket_recv(recv_data, 20) == 0)
     {
         motor_control_msg::actual_value actual_data;
 
-        actual_data.actual_torque = motor_control_->get_actual_torque(recv_data_ptr);
-        actual_data.actual_pos = motor_control_->get_actual_pos(recv_data_ptr);
-        actual_data.actual_vel = motor_control_->get_actual_vel(recv_data_ptr);
+        actual_data.stamp = ros::Time::now();
+        actual_data.actual_torque = motor_control_->get_actual_torque(recv_data);
+        actual_data.actual_pos = motor_control_->get_actual_pos(recv_data);
+        actual_data.actual_vel = motor_control_->get_actual_vel(recv_data);
 
         pub_.publish(actual_data);
     }

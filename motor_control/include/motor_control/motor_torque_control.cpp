@@ -4,6 +4,10 @@ MotorTorqueControl::MotorTorqueControl()
 {
 }
 
+MotorTorqueControl::~MotorTorqueControl()
+{
+}
+
 uint8_t *MotorTorqueControl::set_target_value(const int torque)
 {
     for(size_t i = 0; i < 2; i++)

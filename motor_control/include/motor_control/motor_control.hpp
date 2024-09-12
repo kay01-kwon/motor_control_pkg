@@ -12,6 +12,8 @@ class MotorControl{
 
     public:
 
+    friend class RosMotorControl;
+
 
     MotorControl();
 

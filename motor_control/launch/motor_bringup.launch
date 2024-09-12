@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="motor_control" type="motor_control_node" name="motor_control" output="screen"/>
+        <param name="mode" type="str" value="position"/>
+        <param name="ip_addr" type="str" value="169.254.201.115"/>
+        <param name="port" type="int" value="3000"/>
+</launch>

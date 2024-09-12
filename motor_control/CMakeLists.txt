@@ -26,6 +26,7 @@ include_directories(
 add_executable(motor_control_node 
 src/ros_motor_control_node.cpp 
 include/motor_control/ros_motor_control.cpp
+include/motor_control/motor_control.cpp
 include/motor_control/motor_pos_control.cpp
 include/motor_control/motor_torque_control.cpp
 include/motor_control/socket_client_impl.cpp)
