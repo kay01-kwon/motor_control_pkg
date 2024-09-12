@@ -24,16 +24,14 @@ class RosMotorControl
 
     RosMotorControl();
 
-    void callback_pos(const target_pos_valueConstPtr& msg);
-
-    void callback_torque(const target_torque_valueConstPtr& msg);
-
-    void run();
-
     void publish_actual_data();
 
 
     private:
+
+    void callback_pos(const target_pos_valueConstPtr& msg);
+
+    void callback_torque(const target_torque_valueConstPtr& msg);
 
     ros::NodeHandle nh_;
 
@@ -44,7 +42,8 @@ class RosMotorControl
 
     SocketClientImpl socket_client_;
 
-    uint8_t send_data[20];
+    uint8_t* send_data_ptr;
+    uint8_t* recv_data_ptr;
 
     scoped_ptr<MotorControl> motor_control_;
 

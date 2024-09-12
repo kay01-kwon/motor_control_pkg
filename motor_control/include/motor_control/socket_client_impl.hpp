@@ -19,6 +19,9 @@ class SocketClientImpl
 {
     public:
 
+    friend class RosMotorControl;
+    friend class MotorControl;
+
     SocketClientImpl();
 
     SocketClientImpl(string ip_addr, int port);

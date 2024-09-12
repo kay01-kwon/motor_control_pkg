@@ -50,14 +50,29 @@ RosMotorControl::RosMotorControl()
 
 void RosMotorControl::callback_pos(const target_pos_valueConstPtr &msg)
 {
+    send_data_ptr = motor_control_->set_target_value(msg->target_pos);
+
 }
+
 void RosMotorControl::callback_torque(const target_torque_valueConstPtr &msg)
 {
+    send_data_ptr = motor_control_->set_target_value(msg->target_torque);
 }
-void RosMotorControl::run()
-{
-}
+
 
 void RosMotorControl::publish_actual_data()
 {
+    socket_client_.socket_send(send_data_ptr, 20);
+
+    if(socket_client_.socket_recv(recv_data_ptr, 20) > 0)
+    {
+        motor_control_msg::actual_value actual_data;
+
+        actual_data.actual_torque = motor_control_->get_actual_torque(recv_data_ptr);
+        actual_data.actual_pos = motor_control_->get_actual_pos(recv_data_ptr);
+        actual_data.actual_vel = motor_control_->get_actual_vel(recv_data_ptr);
+
+        pub_.publish(actual_data);
+    }
+
 }

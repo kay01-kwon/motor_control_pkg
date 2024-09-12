@@ -56,12 +56,8 @@ int SocketClientImpl::socket_connect()
 
 int SocketClientImpl::socket_send(uint8_t *data, int data_size)
 {
-    for(size_t i = 0; i < data_size; i++)
-    {
-        send_data[i] = data[i];
-    }
 
-    if(send(socket_fd_, send_data, data_size, 0) < 0)
+    if(send(socket_fd_, data, data_size, 0) < 0)
     {
         // cout << "Send failed" << endl;
         return -1;
@@ -72,15 +68,10 @@ int SocketClientImpl::socket_send(uint8_t *data, int data_size)
 
 int SocketClientImpl::socket_recv(uint8_t *data, int data_size)
 {
-    if(recv(socket_fd_, recv_data, data_size, 0) < 0)
+    if(recv(socket_fd_, data, data_size, 0) < 0)
     {
         // cout << "Receive failed" << endl;
         return -1;
-    }
-
-    for(size_t i = 0; i < data_size; i++)
-    {
-        data[i] = recv_data[i];
     }
 
     return 0;
