@@ -11,3 +11,17 @@ Herein, zub MasterMACS and PC are in charge of server and client, respectively.
 <img src="figures/wiring_img.png">
 
 ## 3. Setup PC in linux
+
+
+
+## 4. Editing ROS launch file
+The ip address and port of zub MasterMACS should be found out.
+
+How to get ip address of zub MasterMACS
+
+Go to ApossIDE
+
+Click controller tab and then Diagnostics.
+
+<img src="figures/zub_MasterMACS_ip_address.png">
+
